@@ -1,10 +1,20 @@
 import pandas as pd
 import numpy as np
 import re
+
+import nltk
+# Download required NLTK data if they don't exist
+try:
+    nltk.download('stopwords', quiet=True)
+    nltk.download('wordnet', quiet=True)
+except Exception as e:
+    print(f"Warning: Could not automatically download NLTK data. Error: {e}")
+
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.decomposition import LatentDirichletAllocation
+
 
 # --- Configuration ---
 N_TOPICS = 4  # We expect 4 main topics: Cardio, Oncology, Pharma, Infectious Disease
