@@ -8,6 +8,7 @@ try:
     nltk.download('stopwords', quiet=True)
     nltk.download('wordnet', quiet=True)
 except Exception as e:
+    # Avoid hard failure; warn so user can manually install if needed.
     print(f"Warning: Could not automatically download NLTK data. Error: {e}")
 
 from nltk.corpus import stopwords
@@ -17,8 +18,8 @@ from sklearn.decomposition import LatentDirichletAllocation
 
 
 # --- Configuration ---
-N_TOPICS = 4  # We expect 4 main topics: Cardio, Oncology, Pharma, Infectious Disease
-N_TOP_WORDS = 8 # Number of words to display per topic
+N_TOPICS = 4  # We expect 4 main topics: Cardio, Oncology, Diseases, Treatment
+N_TOP_WORDS = 4 # Number of words to display per topic
 FILE_PATH = 'data/medical_corpus.txt'
 
 # --- 1. Data Cleaning and Preprocessing ---
@@ -50,14 +51,14 @@ def display_topics(model, feature_names, no_top_words):
         
         # Manually infer a potential label based on keywords
         label = "Unknown"
-        if "cancer" in top_words or "tumor" in top_words or "therapy" in top_words:
+        if "disease" in top_words:
+            label = "Infectious Disease" 
+        elif "cancer" in top_words:
             label = "Oncology"
-        elif "heart" in top_words or "cardiac" in top_words or "artery" in top_words:
-            label = "Cardiology"
-        elif "drug" in top_words or "trial" in top_words or "patient" in top_words:
+        elif "drug" in top_words:
             label = "Pharmacology/Trials"
-        elif "viral" in top_words or "vaccine" in top_words or "fever" in top_words:
-            label = "Infectious Disease"
+        elif "therapy" in top_words:
+            label = "Treatement"
 
         print(f"Topic {topic_idx + 1} ({label}): {' '.join(top_words)}")
 
@@ -72,6 +73,7 @@ if __name__ == "__main__":
             corpus = f.read().splitlines()
         print(f"✅ Loaded {len(corpus)} documents from {FILE_PATH}.")
     except FileNotFoundError:
+        # Fail fast with a clear message if the dataset path is incorrect.      
         print(f"❌ Error: Data file not found at {FILE_PATH}. Please check the path.")
         exit()
 
@@ -89,7 +91,11 @@ if __name__ == "__main__":
     
     # 3. Topic Modeling (LDA Algorithm)
     print(f"\nTraining Latent Dirichlet Allocation (LDA) model with K={N_TOPICS} topics...")
-    # 
+    # LDA hyperparameters:
+    # - n_components: number of latent topics
+    # - max_iter: number of EM iterations (increase for better convergence)
+    # - learning_method='online' is preferable for larger corpora / streaming
+    # - random_state for reproducible results
     lda = LatentDirichletAllocation(
         n_components=N_TOPICS,
         max_iter=15,
@@ -106,10 +112,10 @@ if __name__ == "__main__":
     # Show document-topic distribution for the first document
     doc_topic_distribution = lda.transform(data_vectorized)
     print("\n--- Example Document-Topic Distribution ---")
-    print(f"Document 1: '{corpus[6]}'")
+    print(f"Document 10: '{corpus[10]}'")
     # Find the index of the topic with the highest probability
-    main_topic_idx = np.argmax(doc_topic_distribution[6])
-    main_topic_prob = doc_topic_distribution[6, main_topic_idx]
+    main_topic_idx = np.argmax(doc_topic_distribution[10])
+    main_topic_prob = doc_topic_distribution[10, main_topic_idx]
     
     print(f"The model assigns this document primarily to Topic {main_topic_idx + 1} with a weight of {main_topic_prob:.2f}.")
     print("---------------------------------------------")

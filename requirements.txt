@@ -4,3 +4,7 @@ scikit-learn
 numpy
 pandas
 nltk
+matplotlib
+seaborn
+jupyterlab
+notebook
