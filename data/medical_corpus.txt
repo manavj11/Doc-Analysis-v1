@@ -1,0 +1,13 @@
+# doc-analysis-v1/data/medical_corpus.txt
+A randomized, double-blind study evaluated the efficacy of a new beta-blocker drug for patients with chronic heart failure. The cardiac function improved significantly across the treatment group.
+Myocardial infarction, commonly known as a heart attack, occurs when blood flow to the heart muscle is blocked. Immediate angioplasty is often required.
+The physician prescribed aspirin and a statin regimen to lower the patient's cholesterol and risk of secondary cardiovascular events.
+Chemotherapy agents target rapidly dividing cells, which is the hallmark of many types of cancer. This treatment often leads to significant side effects.
+The malignant tumor in the lung was successfully removed during a complex surgical procedure. Follow-up radiation therapy is recommended.
+Early detection of breast cancer through routine mammography screening remains a cornerstone of successful oncology treatment protocols.
+Phase 3 clinical trials for the new drug involved thousands of healthy volunteers. The vaccine demonstrated a high safety profile and strong efficacy results.
+The FDA granted accelerated approval to the novel antibody drug after promising interim results from the human trial.
+Researchers are tracking patient outcomes in the long-term follow-up study to assess the sustained effects of the gene therapy.
+The primary symptom of this disease outbreak is a persistent, dry cough and fever, requiring immediate isolation.
+Epidemiologists track the spread of contagious disease to implement public health measures and prevent a pandemic.
+The patient tested positive for the pathogen, a gram-negative bacteria, and was started on a broad-spectrum antibiotic regimen.
