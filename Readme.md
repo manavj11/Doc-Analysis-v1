@@ -1,4 +1,4 @@
-# 🩺  Medical Topic Discovery
+# 🩺  Doc-Analysis-v1
 
 This project demonstrates a practical application of **Unsupervised Machine Learning** to discover underlying themes within a collection of medical abstracts or notes. Using **Latent Dirichlet Allocation (LDA)**, the system automatically identifies topics (like "Oncology" or "Clinical Trials") without requiring any pre-labeled data.
 
@@ -15,14 +15,16 @@ This project demonstrates a practical application of **Unsupervised Machine Lear
 
 ## 📁 Project Structure
 
-* `medical-topic-discovery/`
+* `Doc-Analysis-v1/`
     * `├── .gitignore`
     * `├── README.md`
     * `├── requirements.txt`
     * `├── data/`
         * `└── medical_corpus.txt` (Input text, one document per line)
     * `└── src/`
-        * `└── model_trainer.py` (Main script for data prep, vectorization, and LDA modeling)
+        * `└── model_trainer.py` (Main script for LDA modeling)
+    * `└── notebooks/`
+        * `└── exploration.ipynb` (Exploratory notebook)
 
 
 ---
@@ -31,8 +33,8 @@ This project demonstrates a practical application of **Unsupervised Machine Lear
 
 1.  **Clone** and install dependencies:
     ```bash
-    git clone [https://github.com/yourusername/medical-topic-discovery.git](https://github.com/yourusername/medical-topic-discovery.git)
-    cd medical-topic-discovery
+    git clone (https://github.com/manavj11/Doc-Analysis-v1.git)
+    cd Doc-Analysis-v1
     pip install -r requirements.txt
     ```
 
@@ -47,9 +49,13 @@ This project demonstrates a practical application of **Unsupervised Machine Lear
 
 ## 🔑 Interpreting Results
 
-The script prints the top words for each found topic. You interpret these words to manually assign a label.
+The script prints the top words for each found topic. 
+You interpret these words to manually assign a label within the main script.
+Then you verify your model by checking against any one document within the data.
 
 | Example Topic | Top Words | Assigned Label |
 | :---: | :--- | :--- |
 | **Topic 1** | drug, trial, dose, patient | **Pharmacology** |
 | **Topic 2** | heart, artery, surgery, blood | **Cardiology** |
+
+Hope this gives you an insight into a real world use case of ML!
