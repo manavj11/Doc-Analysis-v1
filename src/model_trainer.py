@@ -57,7 +57,7 @@ def display_topics(model, feature_names, no_top_words):
         elif "cancer" in top_words:
             label = "Oncology/Cardiology"
         elif "therapeutic" in top_words:
-            label = "Therapeutic Agents"
+            label = "Therapeutic Care"
         elif "therapy" in top_words:
             label = "Treatment/Therapy"
         elif "screening" in top_words:
